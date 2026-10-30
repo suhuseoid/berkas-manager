@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dokumen</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section id="view-setup" class="center hidden">
+  <div class="card narrow">
+    <h1>Siapkan Brankas</h1>
+    <p class="muted">File yang Anda masukkan akan dienkripsi dan hanya bisa dibuka dengan password ini.</p>
+    <label>Password<input id="setup-pw" type="password" autocomplete="new-password"></label>
+    <label>Ulangi password<input id="setup-pw2" type="password" autocomplete="new-password"></label>
+    <div class="warn">Password <b>tidak bisa dipulihkan</b>. Jika lupa, semua file di dalamnya hilang selamanya. Catat dan simpan di tempat aman.</div>
+    <button id="btn-create" class="primary wide">Buat</button>
+    <p id="setup-err" class="err"></p>
+  </div>
+</section>
+
+<section id="view-unlock" class="center hidden">
+  <div class="card narrow plain">
+    <input id="unlock-pw" type="password" placeholder="Password" autocomplete="current-password">
+    <p id="unlock-err" class="err"></p>
+  </div>
+</section>
+
+<section id="view-main" class="hidden">
+  <header class="topbar">
+    <div class="seg" id="seg">
+      <button data-k="all" class="on">Semua</button>
+      <button data-k="image">Gambar</button>
+      <button data-k="video">Video</button>
+      <button data-k="doc">Dokumen</button>
+    </div>
+    <input id="search" type="search" placeholder="Cari nama file…">
+    <button id="btn-add" class="primary">+ File</button>
+    <button id="btn-add-folder">+ Folder</button>
+    <button id="btn-menu">⋯</button>
+    <button id="btn-lock">Kunci</button>
+  </header>
+  <div id="menu" class="menu hidden">
+    <label class="check"><input type="checkbox" id="opt-move"> Hapus file asli setelah diamankan</label>
+    <hr>
+    <button data-act="export-all">Keluarkan semua file…</button>
+    <button data-act="change">Ganti password…</button>
+    <button data-act="reveal">Tampilkan folder brankas</button>
+  </div>
+  <div class="statusbar muted small"><span id="count"></span><span id="sel-actions" class="hidden">
+    <button id="a-open">Buka</button><button id="a-export">Keluarkan…</button><button id="a-rename">Ganti nama</button><button id="a-delete" class="danger">Hapus</button>
+  </span></div>
+  <main id="grid" class="grid"></main>
+  <div id="empty" class="empty hidden">
+    <div class="big">⇣</div>
+    <p>Seret file atau folder ke sini,<br>atau klik <b>+ File</b>.</p>
+  </div>
+</section>
+
+<div id="drop" class="drop hidden"><div>Lepaskan untuk mengamankan</div></div>
+
+<div id="progress" class="progress hidden">
+  <div class="card narrow">
+    <div id="p-label" class="small"></div>
+    <div class="bar"><span id="p-bar"></span></div>
+    <div id="p-sub" class="muted small"></div>
+  </div>
+</div>
+
+<div id="viewer" class="viewer hidden">
+  <button id="v-close" class="vbtn close">✕</button>
+  <button id="v-prev" class="vbtn prev">‹</button>
+  <button id="v-next" class="vbtn next">›</button>
+  <div id="v-body" class="v-body"></div>
+  <div id="v-name" class="v-name"></div>
+</div>
+
+<div id="modal" class="modal hidden">
+  <div class="card narrow">
+    <h2 id="m-title"></h2>
+    <p id="m-text" class="muted"></p>
+    <div id="m-fields"></div>
+    <div class="actions"><button id="m-no">Batal</button><button id="m-yes" class="primary">OK</button></div>
+    <p id="m-err" class="err"></p>
+  </div>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+<script src="main.js"></script>
+</body>
+</html>
